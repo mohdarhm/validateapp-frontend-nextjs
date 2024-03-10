@@ -20,14 +20,14 @@ export default function Home() {
   let icon = null;
   let messageText = null;
 
-  if (message === 'success') {
-    icon = <TaskAltIcon />;
+  if (message === 'message') {
+    icon = <TaskAltIcon fontSize='large' color='success'className='animate__animated animate__fadeInUp' />;
     messageText = 'Successfully added!';
   } else if (message === 'error') {
-    icon = <CancelIcon />;
-    messageText = 'Error adding:'+ {errorMessage};
+    icon = <CancelIcon fontSize='large' color="secondary" className='animate__animated animate__fadeInUp' />;
+    messageText = errorMessage;
   } else if (message === 'alreadyexists') {
-    icon = <CloudSyncIcon />;
+    icon = <CloudSyncIcon fontSize='large' color="primary" className='animate__animated animate__fadeInUp' />;
     messageText = 'The IPs already added m8';
   }
 
@@ -87,7 +87,7 @@ export default function Home() {
         setMessage(key);
         if (key === 'error' && data.error) {
           console.log(data.error)
-          setErrorMessage(JSON.stringify(data));
+          setErrorMessage(data.error);
         }
       })
       .catch(error => {
@@ -123,7 +123,7 @@ export default function Home() {
           <div className={styles.card} onClick={copyServerIp}>
             <h3>Click to copy server IP &rarr;</h3>
           </div>
-          {copied && <TaskAltIcon />}
+          {copied && <TaskAltIcon fontSize='large' color='success' className='animate__animated animate__fadeInUp' />}
 
           <>
       <div className={styles.card} onClick={addToFirewall}>
@@ -133,13 +133,16 @@ export default function Home() {
       {icon && (
         <div className={styles.iconContainer}>
           {icon}
-          <span>{messageText}</span>
+          {/* <span>{messageText}</span> */}
         </div>
       )}
     </>
         </div>
       </main>
-
+      <h2>SERVER MESSAGE &darr;</h2>
+      <div className='svrmsg'>
+      <span>{messageText}</span> 
+      </div>
       <footer>
         <a
           href="https://www.youtube.com/watch?v=xPxCXPmxOcM"

@@ -86,7 +86,8 @@ export default function Home() {
         const key = Object.keys(data)[0]; 
         setMessage(key);
         if (key === 'error' && data.error) {
-          setErrorMessage(Object.keys(data)[1]);
+          console.log(data.error)
+          setErrorMessage(data.error);
         }
       })
       .catch(error => {

@@ -87,7 +87,7 @@ export default function Home() {
         setMessage(key);
         if (key === 'error' && data.error) {
           console.log(data.error)
-          setErrorMessage(data.error);
+          setErrorMessage(JSON.stringify(data));
         }
       })
       .catch(error => {

@@ -39,7 +39,7 @@ export default function Home() {
       .then(publicData => {
         setCurrentIp(publicData.ip);
 
-        fetch('https://plenary-anagram-408413.el.r.appspot.com/getserverip/')
+        fetch('https://test-361515.df.r.appspot.com/getserverip/')
           .then(response => {
             if (!response.ok) {
               throw new Error('Failed to fetch simulated external IP');
@@ -73,7 +73,7 @@ export default function Home() {
 
 
   const addToFirewall = () => {
-    fetch('https://plenary-anagram-408413.el.r.appspot.com/add_ip_to_firewall/', {
+    fetch('https://test-361515.df.r.appspot.com//add_ip_to_firewall/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

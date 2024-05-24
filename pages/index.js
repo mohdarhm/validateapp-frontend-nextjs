@@ -32,7 +32,7 @@ export default function Home() {
       .then(publicData => {
         setCurrentIp(publicData.ip);
 
-        fetch('https://test-361515.df.r.appspot.com/getserverip/')
+        fetch('https://secret-361016.et.r.appspot.com/getserverip/')
           .then(response => {
             if (!response.ok) {
               throw new Error('Failed to fetch simulated external IP');
@@ -66,7 +66,7 @@ export default function Home() {
   };
 
   const addToFirewall = () => {
-    fetch('https://test-361515.df.r.appspot.com//add_ip_to_firewall/', {
+    fetch('https://secret-361016.et.r.appspot.com/add_ip_to_firewall/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

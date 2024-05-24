@@ -1,11 +1,11 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  /* padding: 0 rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(219, 255, 255);
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
 }
 
 .checkmark {
@@ -33,59 +33,97 @@
 
 .title {
   text-align: center;
+  color: rgb(0, 0, 0);
+  font-family: 'Radio Canada Big';
 }
 
 .svrmsg {
   display: flex;
   flex-direction: column;
   padding: 100px;
+  color: rgb(0, 0, 0);
 }
 
 .title,
 .description {
   text-align: center;
+  color: rgb(0, 0, 0);
+  
 }
 
 .description {
   line-height: 1.5;
   font-size: 1.5rem;
-}
+  color: rgb(7, 7, 7);
 
+}
+.buttonRow{
+  padding: 20px;
+}
+.cardButton{
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  width: 350px;
+  margin: 20px;
+  border-radius: 20px;
+  border: 1px solid #acacac;
+  text-indent: 10px;
+
+
+}
 .grid {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   flex-wrap: wrap;
 
   max-width: 800px;
   margin-top: 3rem;
 }
+.main{
+  width: 100%;
+}
 
 .card {
   margin: 1rem;
-  flex-basis: 45%;
+  flex-basis: 100%;
   padding: 1.5rem;
   text-align: left;
-  color: inherit;
+  width: 100%;
+  background-color: white;
+  color: rgb(0, 0, 0);
   text-decoration: none;
-  border: 1px solid #000000;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
-  transition:
+  /* transition:
+    color 0.15s ease,
+    border-color 0.15s ease; */
+}
+.cardButton{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d9d9d9;
+
+   transition:
     color 0.15s ease,
     border-color 0.15s ease;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #00346e;
-  border-color: #00336d;
+.cardButton:hover,
+.cardButton:focus,
+.cardButton:active {
+  color: #2363d2;
+  border-color: #2363d2;
 }
+.card h2{
+  font-family: 'Reddit Mono', monospace;
+  font-size: 20px;
 
+}
 .card h3 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
+  /* padding: 20px; */
 }
 
 .card p {

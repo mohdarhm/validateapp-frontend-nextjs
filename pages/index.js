@@ -6,22 +6,17 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
 import 'animate.css';
 
-
 export default function Home() {
-  
-  
-  const [currentIp, setCurrentIp] = useState('');
-  const [serverIp, setServerIp] = useState('');
-  const [message, setMessage] = useState('');
-  const [backgroundColor, setBackgroundColor] = useState('');
+  const [currentIp, setCurrentIp] = useState('loading..');
+  const [serverIp, setServerIp] = useState('loading..');
+  const [message, setMessage] = useState('ready to recieve messages.');
   const [copied, setCopied] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   let icon = null;
-  let messageText = null;
-
+  let messageText = 'Ready.';
   if (message === 'message') {
-    icon = <TaskAltIcon fontSize='large' color='success'className='animate__animated animate__fadeInUp' />;
+    icon = <TaskAltIcon fontSize='large' color='success' className='animate__animated animate__fadeInUp' />;
     messageText = 'Successfully added!';
   } else if (message === 'error') {
     icon = <CancelIcon fontSize='large' color="secondary" className='animate__animated animate__fadeInUp' />;
@@ -30,8 +25,6 @@ export default function Home() {
     icon = <CloudSyncIcon fontSize='large' color="primary" className='animate__animated animate__fadeInUp' />;
     messageText = 'The IPs already added m8';
   }
-
-
 
   useEffect(() => {
     fetch('https://api.ipify.org/?format=json')
@@ -47,15 +40,16 @@ export default function Home() {
             return response.json();
           })
           .then(data => {
-            setServerIp(data.external_ip || 'N/A');
+            setServerIp(data.external_ip || 'void');
           })
           .catch(error => {
             console.error('Error getting simulated external IP:', error);
-            setServerIp('N/A');
+            setServerIp('error :<');
           });
       })
       .catch(error => {
         console.error('Error getting public IP:', error);
+        setCurrentIp('error :<')
         // Handle error for public IP fetch
       });
   }, []);
@@ -70,7 +64,6 @@ export default function Home() {
         console.error('Error copying to clipboard:', error);
       });
   };
-
 
   const addToFirewall = () => {
     fetch('https://test-361515.df.r.appspot.com//add_ip_to_firewall/', {
@@ -95,65 +88,116 @@ export default function Home() {
       });
   };
 
-
-
-
   return (
     <div className={styles.container}>
       <Head>
         <title>funny</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" />
+        <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"></link>
+
       </Head>
 
       <main>
-      <h1 className={`${styles.title} animate__animated animate__zoomIn`}>
-  holup its da police 
-</h1>
-
-
+        <h1 className={`${styles.title} animate__animated animate__zoomIn`}>
+         pawlice! freeezee!
+        </h1>
         <br />
 
-        <img src="/cat.jpg" alt="cat" width={300} height={300} />
+        <img src="/cat.jpg" alt="cat" width={450} height={300} style={{paddingBottom:'20px'}} />
 
-        <h2>Server IP: {serverIp} </h2>
-        <h2>Your IP: {currentIp} </h2>
-
-        <div className={styles.grid}>
-
-          <div className={styles.card} onClick={copyServerIp}>
-            <h3>Click to copy server IP &rarr;</h3>
-          </div>
-          {copied && <TaskAltIcon fontSize='large' color='success' className='animate__animated animate__fadeInUp' />}
-
-          <>
-      <div className={styles.card} onClick={addToFirewall}>
-        <h3>Add your IP &rarr;</h3>
-      </div>
-      
-      {icon && (
-        <div className={styles.iconContainer}>
-          {icon}
-          {/* <span>{messageText}</span> */}
+        <div className={styles.card}>
+          <p className='btnhelp'>//server & client info. 'void' indicates server outage.</p>
+          <h2>Server IP: {serverIp} </h2>
+          <h2>Your IP: {currentIp} </h2>
         </div>
-      )}
-    </>
+
+
+        <div className={styles.buttonRow}>
+            <div className={styles.cardButton} onClick={copyServerIp}>
+              <p className='btnhelp'>//clicking this will copy server IP</p>
+              <h3>Copy IP &rarr;</h3>
+              {copied && <TaskAltIcon fontSize='large' color='success' className='animate__animated animate__fadeInUp' />}
+            </div>
+
+            <div className={styles.cardButton} onClick={addToFirewall}>
+            <p className='btnhelp'>//clicking this will validate ur IP</p>
+              <h3>Add IP &rarr;</h3>
+              {message === 'message' || message === 'error' || message === 'alreadyexists' ? (
+                icon
+              ) : null}
+            </div>
+          </div>
+        
+        <h2 className='msghelp'>Server Message &darr;</h2>
+        <div className='svrmsg'>
+          <p className='btnhelp'>//messages from the server, if the request leaves the client.</p>
+          <span>{messageText}</span> 
         </div>
       </main>
-      <h2>SERVER MESSAGE &darr;</h2>
-      <div className='svrmsg'>
-      <span>{messageText}</span> 
-      </div>
+
       <footer>
+        <div className='footcol'>
         <a
           href="https://www.youtube.com/watch?v=xPxCXPmxOcM"
           target="_blank"
           rel="noopener noreferrer"
         >
-         loosing my shit here
+          loosing my shit here
         </a>
+        <a
+          href="https://github.com/mohdarhm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ARHM made dis.
+        </a>
+        </div>
+        
       </footer>
 
       <style jsx>{`
+        .svrmsg {
+          margin-top: 20px;
+          font-family: 'Reddit Mono', monospace;
+          font-size: 15px;
+          width:400px;
+          border-radius:20px;
+          padding: 50px;
+          background-color: #f7faff;
+          border: 1px solid #c0d7ff;
+
+
+        }
+        .msghelp{
+          font-family: 'Radio Canada Big';
+
+        }
+        .btnhelp{
+          color:gray;
+          font-family: 'Reddit Mono', monospace;
+          font-size:14px;
+
+        }
+        .${styles.card} {
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          width: 450px;
+          text-align: left;
+        }
+        .${styles.buttonRow} {
+          display: flex;
+          flex-direction: column;
+          margin: 20px;
+          padding: 20px;
+        }
+       
+        .${styles.cardButton}:hover {
+          background-color: #f0f0f0;
+        }
+        
         main {
           padding: 5rem 0;
           flex: 1;
@@ -170,30 +214,20 @@ export default function Home() {
           justify-content: center;
           align-items: center;
         }
-        footer img {
-          margin-left: 0.5rem;
-        }
         footer a {
           display: flex;
           justify-content: center;
           align-items: center;
           text-decoration: none;
           color: inherit;
+          padding-bottom:15px;
         }
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family:
-            Menlo,
-            Monaco,
-            Lucida Console,
-            Liberation Mono,
-            DejaVu Sans Mono,
-            Bitstream Vera Sans Mono,
-            Courier New,
-            monospace;
+        footcol{
+          display: flex;
+          flex-direction: column;
+        }
+        h3{
+          font-family: 'Radio Canada Big';
         }
       `}</style>
 
@@ -202,18 +236,7 @@ export default function Home() {
         body {
           padding: 0;
           margin: 0;
-          font-family:
-            -apple-system,
-            BlinkMacSystemFont,
-            Segoe UI,
-            Roboto,
-            Oxygen,
-            Ubuntu,
-            Cantarell,
-            Fira Sans,
-            Droid Sans,
-            Helvetica Neue,
-            sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
         }
         * {
           box-sizing: border-box;

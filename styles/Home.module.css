@@ -10,10 +10,12 @@
 
 .checkmark {
   color: rgb(74, 185, 0); 
-  font-size: 0.5rem; 
+  font-size: 0.2rem; 
   margin-left: 5px;
 }
-
+.fthelp{
+  font-family: 'Roboto Mono', monospace
+}
 .title a {
   color: #023d80;
   text-decoration: none;
@@ -58,7 +60,7 @@
 
 }
 .buttonRow{
-  padding: 20px;
+  padding: 50px;
 }
 .cardButton{
   background-color: rgb(255, 255, 255);

@@ -16,13 +16,13 @@ export default function Home() {
   let icon = null;
   let messageText = 'Ready.';
   if (message === 'message') {
-    icon = <TaskAltIcon fontSize='large' color='success' className='animate__animated animate__fadeInUp' />;
+    icon = <TaskAltIcon fontSize='large' color='success' className='animate__animated animate__fadeInUp' style={{paddingBottom:'10px'}}/>;
     messageText = 'Successfully added!';
   } else if (message === 'error') {
-    icon = <CancelIcon fontSize='large' color="secondary" className='animate__animated animate__fadeInUp' />;
+    icon = <CancelIcon fontSize='large' color="secondary" className='animate__animated animate__fadeInUp' style={{paddingBottom:'10px'}}/>;
     messageText = errorMessage;
   } else if (message === 'alreadyexists') {
-    icon = <CloudSyncIcon fontSize='large' color="primary" className='animate__animated animate__fadeInUp' />;
+    icon = <CloudSyncIcon fontSize='large' color="primary" className='animate__animated animate__fadeInUp' style={{paddingBottom:'10px'}} />;
     messageText = 'The IPs already added m8';
   }
 
@@ -105,7 +105,7 @@ export default function Home() {
         </h1>
         <br />
 
-        <img src="/cat.jpg" alt="cat" width={450} height={300} style={{paddingBottom:'20px'}} />
+        <img src="/cat.jpg" alt="cat" width={300} height={300} style={{paddingBottom:'20px'}} />
 
         <div className={styles.card}>
           <p className='btnhelp'>//server & client info. 'void' indicates server outage.</p>
@@ -117,13 +117,13 @@ export default function Home() {
         <div className={styles.buttonRow}>
             <div className={styles.cardButton} onClick={copyServerIp}>
               <p className='btnhelp'>//clicking this will copy server IP</p>
-              <h3>Copy IP &rarr;</h3>
-              {copied && <TaskAltIcon fontSize='large' color='success' className='animate__animated animate__fadeInUp' />}
+              <h3>Copy IP </h3>
+              {copied && <TaskAltIcon fontSize='large' color='success' className='animate__animated animate__fadeInUp' style={{paddingBottom:'10px'}}/>}
             </div>
 
             <div className={styles.cardButton} onClick={addToFirewall}>
             <p className='btnhelp'>//clicking this will validate ur IP</p>
-              <h3>Add IP &rarr;</h3>
+              <h3>Add IP</h3>
               {message === 'message' || message === 'error' || message === 'alreadyexists' ? (
                 icon
               ) : null}
@@ -143,13 +143,16 @@ export default function Home() {
           href="https://www.youtube.com/watch?v=xPxCXPmxOcM"
           target="_blank"
           rel="noopener noreferrer"
+          className='fthelp'
         >
-          loosing my shit here
+          cool vid
         </a>
         <a
           href="https://github.com/mohdarhm"
           target="_blank"
           rel="noopener noreferrer"
+          className='fthelp'
+
         >
           ARHM made dis.
         </a>
@@ -206,6 +209,7 @@ export default function Home() {
           justify-content: center;
           align-items: center;
         }
+       
         footer {
           width: 100%;
           height: 100px;
@@ -220,11 +224,21 @@ export default function Home() {
           align-items: center;
           text-decoration: none;
           color: inherit;
+          font-family: 'Reddit Mono', monospace;
           padding-bottom:15px;
+          transition:
+          color 0.10s ease,
+          border-color 0.10s ease;
+          margin-bottom:10px;
+        }
+        footer a:hover {
+          color: #2363d2;
+
         }
         footcol{
           display: flex;
           flex-direction: column;
+          margin:10px;
         }
         h3{
           font-family: 'Radio Canada Big';
